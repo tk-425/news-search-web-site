@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "pm2 start app.js --watch && pm2 monit",
+    "start": "node app.js",
     "test": "pm2 start 0 --watch && pm2 monit",
     "stop": "pm2 stop all && pm2 delete all"
   },
