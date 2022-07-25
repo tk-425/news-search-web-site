@@ -10,7 +10,7 @@ window.addEventListener(`DOMContentLoaded`, () => {
 
 // Navbar - Trigger Highlight
 const highlightMenu = () => {
-  if (!isUrlSearch()) {
+  if (isUrlSearch()) {
     const searchMenu = document.querySelector(`#navbar__search`);
     const latestMenu = document.querySelector(`#navbar__latest`);
     let scrollPosition = window.scrollY;
@@ -36,9 +36,21 @@ const highlightMenu = () => {
 };
 
 function isUrlSearch() {
+  const herokuURL = `https://search-news-web.herokuapp.com/search`;
+  const localURL = `http://localhost:8080/search`;
+  const currentURL = window.location.href;
+
+  if (currentURL === herokuURL || currentURL === localURL) {
+    return false;
+  }
+
+  return true;
+
+/*
   return window.location.href === `http://localhost:8080/search`
     ? true
     : false;
+*/
 }
 
 window.addEventListener(`scroll`, highlightMenu);
