@@ -36,13 +36,12 @@
               <a href="<%- article.url %>" class="article__item" target="_blank">
                 <img src="<%- article.urlToImage %>" alt="<%- article.title %>" />
                 <h2><%- article.title %></h2>
-                <hr>
               <% if (article.content === null || article.content === ``) { %> 
                 <p><%- article.description %></p>
-                <p>[<em>read more</em>]</p>
+                <p class="article__read-more">[<em>read more</em>]</p>
               <% } else { %>
                 <p><%- article.content.split("[")[0].replace(/<.*?>/gi, "") %></p>
-                <p>[<em>read more</em>]</p>
+                <p class="article__read-more">[<em>read more</em>]</p>
               <% } %> 
               </a>
             </div>

@@ -40,11 +40,7 @@ function isUrlSearch() {
   const localURL = `http://localhost:8080/search`;
   const currentURL = window.location.href;
 
-  if (currentURL === herokuURL || currentURL === localURL) {
-    return false;
-  }
-
-  return true;
+  return !(currentURL === herokuURL || currentURL === localURL);
 
 /*
   return window.location.href === `http://localhost:8080/search`
