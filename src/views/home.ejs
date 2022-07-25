@@ -2,6 +2,7 @@
 <%- include('partials/navbar') %>
 <%- include('partials/headlines') %>
 <%- include('partials/preloader') %>
+<%- include('partials/top') %>
 
 <!-- Content -->
 <section class="content__wrapper" id="content">
@@ -28,7 +29,7 @@
   <!-- Latest News -->
   <div class="articles" id="latest--news">
     <h1>Latest News</h1>
-    <div class="latest__news">
+    <div class="articles__news">
       <% if (latest != null) { %> 
         <% latest.articles.forEach(article => { %> 
           <% if (article.urlToImage != null) { %>

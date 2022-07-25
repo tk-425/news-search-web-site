@@ -8,6 +8,26 @@ window.addEventListener(`DOMContentLoaded`, () => {
   showPage();
 });
 
+// Back to Top Button
+const topButton = document.querySelector(`#top__button`);
+const activateTopButton = () => {
+  let scrollPosition = window.scrollY;
+
+  console.log(scrollPosition);
+
+  if (scrollPosition < 900) {
+    topButton.classList.remove(`show`);
+  } else {
+    topButton.classList.add(`show`);
+  }
+};
+
+window.addEventListener(`scroll`, activateTopButton);
+topButton.addEventListener(`click`, (e) => {
+  e.preventDefault();
+  window.scrollTo(0, 0);
+})
+
 // Navbar - Trigger Highlight
 const highlightMenu = () => {
   if (isUrlSearch()) {
@@ -15,13 +35,9 @@ const highlightMenu = () => {
     const latestMenu = document.querySelector(`#navbar__latest`);
     let scrollPosition = window.scrollY;
     const highlight = `highlight`;
-
-    console.log(scrollPosition);
-    console.log(window.location.href);
     const isHamburgerMenuOff = window.innerWidth > 768 ? true : false;
 
-    // checks if hamburger menu is active
-
+    // checks if hamburger menu is active & scroll position
     if (isHamburgerMenuOff && scrollPosition < 600) {
       searchMenu.classList.add(highlight);
       latestMenu.classList.remove(highlight);
@@ -41,12 +57,6 @@ function isUrlSearch() {
   const currentURL = window.location.href;
 
   return !(currentURL === herokuURL || currentURL === localURL);
-
-/*
-  return window.location.href === `http://localhost:8080/search`
-    ? true
-    : false;
-*/
 }
 
 window.addEventListener(`scroll`, highlightMenu);

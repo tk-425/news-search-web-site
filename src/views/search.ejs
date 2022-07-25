@@ -2,12 +2,29 @@
 <%- include('partials/navbar') %> 
 <%- include('partials/headlines') %>
 <%- include('partials/preloader') %>
+<%- include('partials/top') %>
 
 <!-- Searched News -->
 <section class="content__wrapper" id="content">
   <div class="articles" id="articles">
-    <h1>Search: <em><%- searched %></em> </h1>
-    <div class="latest__news">
+    <h1>Search</h1>
+    <div class="hero__search--container align__center">
+      <form action="/search" class="hero__form align__center" method="POST">
+        <input
+          class="hero__search--box bg__transparent"
+          type="text"
+          name="search"
+          placeholder="<%- searched %>"
+          autofocus
+          required
+        />
+        <button class="hero__search--button bg__transparent" type="submit">
+          <img class="magnifying-glass--img" src="images/magnifying-glass.png" alt="submit" />
+        </button>
+      </form>
+    </div>
+
+    <div class="articles__news">
       <% if (articles != null) { %> 
         <% articles.articles.forEach(article => { %> 
           <% if (article.urlToImage != null) { %>

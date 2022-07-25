@@ -8,13 +8,17 @@ const searchURL = `https://newsapi.org/v2/everything?q=`;
 const searchParameters = `&language=en&${dateRange}&apiKey=${process.env.LATEST_API_KEY}`;
 
 searchRouter.post(`/`, async (req, res) => {
-  const search = req.body.search;
+  let search = req.body.search;
+
   let headlinesNews;
   let searchedNews;
 
   try {
+    console.log(search);
     headlinesNews = await getNews(headlinesURL, `headlines`);
-    searchedNews = await getNews(searchURL + search + searchParameters);
+    searchedNews = await getNews(
+      searchURL + search.replaceAll(` `, `%20`) + searchParameters
+    );
 
     res.render(`search`, {
       headlines: headlinesNews,
