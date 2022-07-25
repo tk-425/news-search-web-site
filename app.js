@@ -5,7 +5,7 @@ const bodyParser = require(`body-parser`);
 
 // app variables
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 // static files - css, images, js, json (for news)
 app.use(express.static(`public`));
