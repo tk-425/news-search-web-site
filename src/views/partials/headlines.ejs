@@ -1,0 +1,14 @@
+<!-- Headlines Section -->
+<div class="headlines__wrapper">
+  <div class="headlines">
+    <div class="headlines__items">
+      <% if (headlines != null) { %> 
+        <% headlines.results.forEach(headline => { %>
+          <a href="<%- headline.link %>" target="_blank">
+            <%- headline.title %>
+          </a>
+        <% }) %>
+      <% } %> 
+    </div>
+  </div>
+</div>

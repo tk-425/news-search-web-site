@@ -1,0 +1,39 @@
+<%- include('partials/head') %> 
+<%- include('partials/navbar') %> 
+<%- include('partials/headlines') %>
+<%- include('partials/preloader') %>
+
+<!-- Searched News -->
+<section class="content__wrapper" id="content">
+  <div class="articles" id="articles">
+    <h1>Search: <em><%- searched %></em> </h1>
+    <div class="latest__news">
+      <% if (articles != null) { %> 
+        <% articles.articles.forEach(article => { %> 
+          <% if (article.urlToImage != null) { %>
+            <div class="article__news--single">
+              <a href="<%- article.url %>" class="article__item" target="_blank">
+                <img src="<%- article.urlToImage %>" alt="<%- article.title %>" />
+                <h2><%- article.title %> </h2>
+                <hr>
+              <% if (article.content === null || article.content === ``) { %> 
+                <p><%- article.description %></p>
+                <p>[<em>read more</em>]</p>
+              <% } else { %>
+                <p><%- article.content.split("[")[0].replace(/<.*?>/gi, "") %></p>
+                <p>[<em>read more</em>]</p>
+              <% } %> 
+              </a>
+            </div>
+          <% } %>
+        <% }) %>
+      <% } else { %> 
+        No post found. 
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<%- include(`partials/footer`) %>
+<%- include(`partials/script`) %>
+<%- include('partials/foot') %>

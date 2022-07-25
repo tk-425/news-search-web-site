@@ -1,0 +1,62 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+<%- include('partials/headlines') %>
+<%- include('partials/preloader') %>
+
+<!-- Content -->
+<section class="content__wrapper" id="content">
+  <!-- Search Box -->
+  <div class="hero align__center" id="search">
+    <h1 class="hero__heading">Search for News</h1>
+    <div class="hero__search--container align__center">
+      <form action="/search" class="hero__form align__center" method="POST">
+        <input
+          class="hero__search--box bg__transparent"
+          type="text"
+          name="search"
+          placeholder="Search"
+          autofocus
+          required
+        />
+        <button class="hero__search--button bg__transparent" type="submit">
+          <img class="magnifying-glass--img" src="images/magnifying-glass.png" alt="submit" />
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Latest News -->
+  <div class="articles" id="latest--news">
+    <h1>Latest News</h1>
+    <div class="latest__news">
+      <% if (latest != null) { %> 
+        <% latest.articles.forEach(article => { %> 
+          <% if (article.urlToImage != null) { %>
+            <div class="article__news--single hover-ease">
+              <a href="<%- article.url %>" class="article__item" target="_blank">
+                <img src="<%- article.urlToImage %>" alt="<%- article.title %>" />
+                <h2><%- article.title %></h2>
+                <hr>
+              <% if (article.content === null || article.content === ``) { %> 
+                <p><%- article.description %></p>
+                <p>[<em>read more</em>]</p>
+              <% } else { %>
+                <p><%- article.content.split("[")[0].replace(/<.*?>/gi, "") %></p>
+                <p>[<em>read more</em>]</p>
+              <% } %> 
+              </a>
+            </div>
+          <% } %>
+        <% }) %>
+      <% } else { %> 
+        No post found. 
+      <% } %>
+    </div>
+  </div>
+
+</section>
+
+    
+<%- include(`partials/footer`) %>
+<%- include(`partials/script`) %>
+<%- include('partials/foot') %>
