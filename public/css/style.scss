@@ -449,6 +449,7 @@ html {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     grid-gap: 2rem;
+    justify-content: center;
     max-width: 100%;
     width: var(--page-width);
     margin: 0 auto;
@@ -463,7 +464,7 @@ html {
     .article__item {
       text-decoration: none;
       color: var(--text-color);
-      padding: 20px;
+      padding: 0 20px;
 
       img {
         display: block;
@@ -501,6 +502,19 @@ html {
 }
 
 // Responsive Web
+@media only screen and (max-width: 800px) {
+  #top__button {
+    width: 40px;
+    height: 40px;
+  }
+
+  #top__button::after {
+    content: "^";
+    font-size: 1.5em;
+    line-height: 40px;
+  }
+}
+
 @media only screen and (max-width: 641px) {
   .content__wrapper {
     .hero__heading {
@@ -526,7 +540,24 @@ html {
 }
 
 @media only screen and (max-width: 450px) {
+  #top__button {
+    width: 36px;
+    height: 36px;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  #top__button::after {
+    content: "^";
+    font-size: 1.2em;
+    line-height: 36px;
+  }
+
   .content__wrapper {
+    .hero {
+      padding: 300px 0 600px 0;
+    }
+
     .hero__heading {
       font-size: 38px;
     }
@@ -544,6 +575,78 @@ html {
     .articles {
       h1 {
         font-size: 38px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .headlines__wrapper {
+    display: none;
+  }
+
+  #top__button {
+    display: none;
+  }
+
+  .content__wrapper {
+    .hero {
+      padding: 240px 0 400px 0;
+    }
+
+    .hero__heading {
+      font-size: 34px;
+    }
+
+    .hero__search--container {
+      .hero__form {
+        width: 320px;
+
+        .hero__search--box {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .articles {
+      h1 {
+        font-size: 34px;
+        padding: 96px 0 32px 0;
+      }
+
+      .articles__news .article__news--single {
+        width: 320px;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .content__wrapper {
+    .hero__heading {
+      font-size: 32px;
+    }
+
+    .hero__search--container {
+      .hero__form {
+        width: 260px;
+
+        .hero__search--box {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .articles {
+      h1 {
+        font-size: 32px;
+        padding: 96px 0 32px 0;
+      }
+
+      .articles__news .article__news--single {
+        width: 280px;
+        margin: 0 auto;
       }
     }
   }

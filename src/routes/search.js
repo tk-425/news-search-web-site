@@ -14,7 +14,7 @@ searchRouter.post(`/`, async (req, res) => {
   let searchedNews;
 
   try {
-    console.log(search);
+    console.log(`Searched Keyword: ${search}\nLink: ` + searchURL + search.replaceAll(` `, `%20`) + searchParameters);
     headlinesNews = await getNews(headlinesURL, `headlines`);
     searchedNews = await getNews(
       searchURL + search.replaceAll(` `, `%20`) + searchParameters
