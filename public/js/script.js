@@ -26,7 +26,7 @@ window.addEventListener(`scroll`, activateTopButton);
 topButton.addEventListener(`click`, (e) => {
   e.preventDefault();
   window.scrollTo(0, 0);
-})
+});
 
 // Navbar - Trigger Highlight
 const highlightMenu = () => {
@@ -41,7 +41,7 @@ const highlightMenu = () => {
     if (isHamburgerMenuOff && scrollPosition < 600) {
       searchMenu.classList.add(highlight);
       latestMenu.classList.remove(highlight);
-    } else if (isHamburgerMenuOff && scrollPosition < 5000) {
+    } else if (isHamburgerMenuOff && scrollPosition < document.body.scrollHeight) {
       latestMenu.classList.add(highlight);
       searchMenu.classList.remove(highlight);
     } else {
@@ -52,11 +52,14 @@ const highlightMenu = () => {
 };
 
 function isUrlSearch() {
-  const herokuURL = `https://search-news-web.herokuapp.com/search`;
-  const localURL = `http://localhost:8080/search`;
+  const herokuURL = `https://search-news-web.herokuapp.com/`;
+  const localURL = `http://localhost:8080/`;
+  const searchTag = `#search`;
+  const latestTag = `#latest--news`;
+  const urlList = [herokuURL, localURL, herokuURL + searchTag, localURL + searchTag, herokuURL + latestTag, localURL + latestTag];
   const currentURL = window.location.href;
 
-  return !(currentURL === herokuURL || currentURL === localURL);
+  return (urlList.indexOf(currentURL) !== -1);
 }
 
 window.addEventListener(`scroll`, highlightMenu);
