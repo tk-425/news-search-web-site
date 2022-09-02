@@ -7,13 +7,11 @@ const bodyParser = require(`body-parser`);
 const app = express();
 const port = process.env.PORT || 8080;
 
-// static files - css, images, js, json (for news)
+// static files - css, images, js
 app.use(express.static(`public`));
 app.use(`/css`, express.static(__dirname + `public/css`));
 app.use(`/images`, express.static(__dirname + `public/images`));
 app.use(`/js`, express.static(__dirname + `public/js`));
-app.use(`/json`, express.static(__dirname + `public/json`));
-
 
 // allows only 1 api request per second
 const limiter = rateLimit({
@@ -21,7 +19,6 @@ const limiter = rateLimit({
   max: 1,
 });
 app.use(limiter);
-
 
 // templating engine
 app.set(`views`, `./src/views`);
@@ -35,7 +32,7 @@ const homeRouter = require(`./src/routes/home`);
 const searchRouter = require(`./src/routes/search`);
 const creditsRouter = require(`./src/routes/credits`);
 
-// for now
+// view pages
 app.use(`/`, homeRouter);
 app.use(`/search`, searchRouter);
 app.use(`/credits`, creditsRouter);
