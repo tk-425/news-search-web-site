@@ -41,7 +41,10 @@ const highlightMenu = () => {
     if (isHamburgerMenuOff && scrollPosition < 600) {
       searchMenu.classList.add(highlight);
       latestMenu.classList.remove(highlight);
-    } else if (isHamburgerMenuOff && scrollPosition < document.body.scrollHeight) {
+    } else if (
+      isHamburgerMenuOff &&
+      scrollPosition < document.body.scrollHeight
+    ) {
       latestMenu.classList.add(highlight);
       searchMenu.classList.remove(highlight);
     } else {
@@ -52,14 +55,21 @@ const highlightMenu = () => {
 };
 
 function isUrlSearch() {
-  const herokuURL = `https://search-news-web.herokuapp.com/`;
+  const serverURL = `https://search-news-web.herokuapp.com/`;
   const localURL = `http://localhost:8080/`;
   const searchTag = `#search`;
   const latestTag = `#latest--news`;
-  const urlList = [herokuURL, localURL, herokuURL + searchTag, localURL + searchTag, herokuURL + latestTag, localURL + latestTag];
+  const urlList = [
+    serverURL,
+    localURL,
+    serverURL + searchTag,
+    localURL + searchTag,
+    serverURL + latestTag,
+    localURL + latestTag,
+  ];
   const currentURL = window.location.href;
 
-  return (urlList.indexOf(currentURL) !== -1);
+  return urlList.indexOf(currentURL) !== -1;
 }
 
 window.addEventListener(`scroll`, highlightMenu);
